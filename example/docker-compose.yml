@@ -23,22 +23,17 @@ services:
     restart: always
     volumes:
       - ./apisix_conf/config.yaml:/usr/local/apisix/conf/config.yaml:ro
-      - ./apisix_conf/config-default.yaml:/usr/local/apisix/conf/config-default.yaml:ro
       - ./apisix_conf/file-proxy.lua:/opt/apisix/plugins/file-proxy.lua:ro
-        #- ./apisix_conf/3rd-party.lua:/usr/local/apisix/apisix/plugins/3rd-party.lua
     
     #depends_on:
       #- etcd
     ##network_mode: host
     ports:
-      #      - "9180:9180/tcp"
-      - "9080:9080/tcp"
-      - "9091:9091/tcp"
-      - "9443:9443/tcp"
-      - "9092:9092/tcp"
-    networks:
-      apisix:
+      - "9180:9180"
+      - "9080:9080"
 
-networks:
-  apisix:
-    driver: bridge
+  etcd:
+    image: bitnami/etcd:3.5.13
+    environment:
+      ETCD_ENABLE_V2: true
+      ALLOW_NONE_AUTHENTICATION: yes
