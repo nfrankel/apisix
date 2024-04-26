@@ -31,9 +31,9 @@ services:
     ports:
       - "9180:9180"
       - "9080:9080"
-
-  etcd:
-    image: bitnami/etcd:3.5.13
-    environment:
-      ETCD_ENABLE_V2: true
-      ALLOW_NONE_AUTHENTICATION: yes
+      - "9090:9090"
+        #  etcd:
+        #    image: bitnami/etcd:3.5.13
+        #    environment:
+        #      ETCD_ENABLE_V2: true
+        #      ALLOW_NONE_AUTHENTICATION: yes
